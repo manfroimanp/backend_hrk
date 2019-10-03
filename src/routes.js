@@ -21,6 +21,10 @@ routes.get('/', function(req, res){
     res.sendFile(__dirname + '/index.html');
 });
 
+routes.get('/manp', function(req, res){
+    res.sendFile(__dirname + '/index_maionese.html');
+});
+
 
 routes.get('/maionese', (req, res) => {
 
