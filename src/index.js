@@ -32,7 +32,7 @@ app.use(cors());  //Permite que todo o tipo de aplicacao acesse o backend
 
 app.use(require('./routes'));
 
-server.listen(3333);
+server.listen(process.env.PORT || 3000);
 
 ttn.data(appID, accessKey)
   .then(function (client) {
