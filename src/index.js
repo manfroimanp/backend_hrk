@@ -4,8 +4,8 @@ const ttn = require("ttn");
 const cors = require('cors');
 //const fs = require('fs');
 
-const appID = "592658194155319";
-const accessKey = "ttn-account-v2.h7KbuWhx-_8t66dHXsztvenM1hoHL_HEGZ8_flNvvEA";
+//const appID = "592658194155319";
+//const accessKey = "ttn-account-v2.h7KbuWhx-_8t66dHXsztvenM1hoHL_HEGZ8_flNvvEA";
 
 const app = express();  //Criar um servidor
 
@@ -34,6 +34,7 @@ app.use(require('./routes'));
 
 server.listen(process.env.PORT || 3000);
 
+/*
 ttn.data(appID, accessKey)
   .then(function (client) {
     client.on("uplink", function (devID, payload) {
@@ -97,3 +98,4 @@ ttn.data(appID, accessKey)
         //client.send("5c643ad113dfae13c840ba6e", encoded, 1, true);
     })
   });
+  */
