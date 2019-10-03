@@ -13,9 +13,14 @@ const routes = new express.Router();
 //    return res.send(`olá ${req.query.name}`);
 //});
 
-routes.get('/', (req, res) => {
-    return res.send("MANP Tecnologia");
+//routes.get('/', (req, res) => {
+//    return res.send("MANP Tecnologia");
+//});
+
+routes.get('/', function(req, res){
+    res.sendFile(__dirname + '/index.html');
 });
+
 
 routes.get('/maionese', (req, res) => {
 
