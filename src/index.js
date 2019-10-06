@@ -4,9 +4,6 @@ const ttn = require("ttn");
 const cors = require('cors');
 //const fs = require('fs');
 
-//const appID = "592658194155319";
-//const accessKey = "ttn-account-v2.h7KbuWhx-_8t66dHXsztvenM1hoHL_HEGZ8_flNvvEA";
-
 const app = express();  //Criar um servidor
 
 //Divide servidor para suportar tanto http como protocolo websocket que permite fazer a comuncacao em tempo real
@@ -17,7 +14,7 @@ var package_lora_activation;
 var package_lora_uplink;
 //Comunicacao com o banco de dados
 //mongoose.connect(
-//    'mongodb+srv://semana:semana@cluster0-ow9yw.mongodb.net/test?retryWrites=true&w=majority',
+//    MONGO,
 //    {
 //      useNewUrlParser: true
 //    }
