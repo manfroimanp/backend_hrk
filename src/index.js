@@ -118,7 +118,7 @@ app.get('/activation', (req, res) => {
 });
 
 app.get('/uplink', (req, res) => {
-  res.send(package_lora_uplink);
+  res.send(package_lora_uplink + "\n\r");
 });
 
 app.get('/lora', (req, res) => {
