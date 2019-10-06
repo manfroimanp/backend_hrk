@@ -4,8 +4,8 @@ const ttn = require("ttn");
 const cors = require('cors');
 //const fs = require('fs');
 
-const appID = "592658194155319";
-const accessKey = "ttn-account-v2.h7KbuWhx-_8t66dHXsztvenM1hoHL_HEGZ8_flNvvEA";
+//const appID = "592658194155319";
+//const accessKey = "ttn-account-v2.h7KbuWhx-_8t66dHXsztvenM1hoHL_HEGZ8_flNvvEA";
 
 const app = express();  //Criar um servidor
 
@@ -36,7 +36,7 @@ app.use(require('./routes'));
 
 server.listen(process.env.PORT || 3000);
 
-ttn.data(appID, accessKey)
+ttn.data(process.env.APP_ID_TTN, process.env.ACCESS_KEY_TTN)
   .then(function (client) {
     client.on("uplink", function (devID, payload) {
         console.log("Received uplink from ", devID)
@@ -102,7 +102,7 @@ ttn.data(appID, accessKey)
   });
 
 
-  ttn.data(appID, accessKey)
+  ttn.data(process.env.APP_ID_TTN, process.env.ACCESS_KEY_TTN)
   .then(function (client) {
     client.on("activation", function (devID, payload) {
         console.log("Received activation from ", devID)
