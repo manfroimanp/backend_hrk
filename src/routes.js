@@ -83,5 +83,28 @@ routes.post('/api/users', function(req, res) {
     res.send(user_id + ' ' + token + ' ' + geo);
 });
 
+const alunos = [
+  {
+    nome: 'Aluno1',
+    idade: 12
+  },
+  {
+    nome: 'Aluno2',
+    idade: 13
+  },
+  {
+    nome: 'Aluno3',
+    idade: 14
+  },
+  {
+    nome: 'Aluno4',
+    idade: 15
+  }
+]
+
+routes.get('/api/v1/alunos', function (req, res) { //endereco da requisicao onde e retornado hello world
+  res.send(alunos)
+});
+
 
 module.exports = routes;

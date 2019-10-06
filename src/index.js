@@ -4,8 +4,8 @@ const ttn = require("ttn");
 const cors = require('cors');
 //const fs = require('fs');
 
-//const appID = "592658194155319";
-//const accessKey = "ttn-account-v2.h7KbuWhx-_8t66dHXsztvenM1hoHL_HEGZ8_flNvvEA";
+const appID = "592658194155319";
+const accessKey = "ttn-account-v2.h7KbuWhx-_8t66dHXsztvenM1hoHL_HEGZ8_flNvvEA";
 
 const app = express();  //Criar um servidor
 
@@ -13,6 +13,8 @@ const app = express();  //Criar um servidor
 const server = require('http').Server(app);
 const io = require('socket.io')(server); 
 
+var package_lora_activation;
+var package_lora_uplink;
 //Comunicacao com o banco de dados
 //mongoose.connect(
 //    'mongodb+srv://semana:semana@cluster0-ow9yw.mongodb.net/test?retryWrites=true&w=majority',
@@ -34,12 +36,12 @@ app.use(require('./routes'));
 
 server.listen(process.env.PORT || 3000);
 
-/*
 ttn.data(appID, accessKey)
   .then(function (client) {
     client.on("uplink", function (devID, payload) {
         console.log("Received uplink from ", devID)
         //console.log(payload)
+        package_lora_uplink = payload;
         console.log("EUI = " + payload.hardware_serial);
         console.log("UpLinks = " + payload.counter);
         //console.log(payload.payload_raw);
@@ -98,4 +100,30 @@ ttn.data(appID, accessKey)
         //client.send("5c643ad113dfae13c840ba6e", encoded, 1, true);
     })
   });
-  */
+
+
+  ttn.data(appID, accessKey)
+  .then(function (client) {
+    client.on("activation", function (devID, payload) {
+        console.log("Received activation from ", devID)
+        console.log(payload)
+        package_lora_activation = payload;
+    })
+  });
+
+  let getData = () => {
+    //O seu método de leitura do arquivo vem aqui
+    return 'qualquer que seja o seu resultado aqui';
+}
+
+app.get('/activation', (req, res) => {
+    res.send(package_lora_activation);
+});
+
+app.get('/uplink', (req, res) => {
+  res.send(package_lora_uplink);
+});
+
+app.get('/lora', (req, res) => {
+  res.sendFile(__dirname + '/lora.html');
+});
