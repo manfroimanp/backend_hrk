@@ -38,13 +38,15 @@ ttn.data(process.env.APP_ID_TTN, process.env.ACCESS_KEY_TTN)
     client.on("uplink", function (devID, payload) {
         console.log("Received uplink from ", devID)
         //console.log(payload)
-        package_lora_uplink = payload;
+        //package_lora_uplink = payload;
         console.log("EUI = " + payload.hardware_serial);
         console.log("UpLinks = " + payload.counter);
         //console.log(payload.payload_raw);
         const decoded = new Buffer.from(payload.payload_raw, 'hex').toString(); // decoded === "This is my string to be encoded/decoded"
         console.log("Data = " + decoded);
         console.log("Time = " + payload.metadata.time);
+
+        package_lora_uplink = decoded + "\n\r";
 
         const time_gps = decoded[0] + decoded[1] + 
                          decoded[2] + 
@@ -118,7 +120,7 @@ app.get('/activation', (req, res) => {
 });
 
 app.get('/uplink', (req, res) => {
-  res.send(package_lora_uplink + "\n\r");
+  res.send(package_lora_uplink);
 });
 
 app.get('/lora', (req, res) => {
