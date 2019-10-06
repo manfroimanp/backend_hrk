@@ -2,6 +2,9 @@ const express = require("express");
 //const mongoose = require("mongoose");
 const ttn = require("ttn");
 const cors = require('cors');
+require('dotenv').config({  
+  path: process.env.NODE_ENV === "test" ? ".env.testing" : ".env"
+})
 //const fs = require('fs');
 
 const app = express();  //Criar um servidor
@@ -46,8 +49,6 @@ ttn.data(process.env.APP_ID_TTN, process.env.ACCESS_KEY_TTN)
         console.log("Data = " + decoded);
         console.log("Time = " + payload.metadata.time);
 
-        package_lora_uplink = decoded + "\n\r";
-
         const time_gps = decoded[0] + decoded[1] + 
                          decoded[2] + 
                          decoded[3] + decoded[4] +
@@ -69,6 +70,8 @@ ttn.data(process.env.APP_ID_TTN, process.env.ACCESS_KEY_TTN)
         console.log("Time GPS = " + time_gps);              
         console.log("Time INTERNO = " + time_int);                      
         console.log("Time System = " + time_system);
+
+        package_lora_uplink = decoded + ' - ' + payload.counter + ' - ' + payload.hardware_serial + ' - ' + time_system;
 
 
         //if (payload.hardware_serial == "0004A30B0022E3DC")
