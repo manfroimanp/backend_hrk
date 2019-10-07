@@ -71,7 +71,7 @@ ttn.data(process.env.APP_ID_TTN, process.env.ACCESS_KEY_TTN)
         console.log("Time INTERNO = " + time_int);                      
         console.log("Time System = " + time_system);
 
-        package_lora_uplink = decoded + ' - ' + payload.counter + ' - ' + payload.hardware_serial + ' -' + time_system;
+        package_lora_uplink = decoded + ' - ' + payload.counter + ' - ' + payload.hardware_serial + ' - ' + time_system;
 
 
         //if (payload.hardware_serial == "0004A30B0022E3DC")

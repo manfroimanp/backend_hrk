@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>.:: MANP CLOUD - IoT ::.</title>
+<link rel="stylesheet" type="text/css" href="style.css"/>
+<script type='text/javascript' src='mosquitto.js'></script>
+<script type='text/javascript' src='http://code.jquery.com/jquery-1.7.2.min.js'></script>
+<script type="text/javascript">
+</script>
+
+</head>
+<body>
+	<center>
+    <table border ="0" width="100%">
+        </tr>
+            <td bgcolor = "#3D3D3F" width="30%">
+                <center><img src="logo_manp.png" height="50%" width="50%"></center>
+            </td>
+            <td bgcolor = "#3D3D3F" width="70%">
+                <center><font color =white><h1>MANP CLOUD - IoT</h1><br>
+                MANP Tecnologia</font>
+                </center>
+            </td>
+        </tr>		
+    </table>
+    
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $.get('/uplink', function(res) {
+                $('span').html(res);
+            })
+        });
+    </script>
+
+<body>
+    <p>Minha data: <strong><span></span><strong></p>
+</body>
+
+</html>

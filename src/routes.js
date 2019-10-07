@@ -106,5 +106,18 @@ routes.get('/api/v1/alunos', function (req, res) { //endereco da requisicao onde
   res.send(alunos)
 });
 
+let getData = () => {
+  //O seu método de leitura do arquivo vem aqui
+  return 'qualquer que seja o seu resultado aqui';
+}
+
+routes.get('/data_teste', (req, res) => {
+  res.send(getData());
+});
+
+routes.get('/testes', (req, res) => {
+  res.sendFile(__dirname + '/teste.html');
+});
+
 
 module.exports = routes;
