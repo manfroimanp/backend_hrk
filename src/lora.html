@@ -8,17 +8,21 @@
 </head>
 <body>
   <h1>Lista de alunos estático</h1>
-  <ul>
-    <ol>Nome: Aluno 1</ol>
-    <ol>Nome: Aluno 2</ol>
-    <ol>Nome: Aluno 3</ol>
-    <ol>Nome: Aluno 4</ol>
+  <ul id="alunos">
   </ul>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
 <script>
-  axios.get(APP_URL + '/api/v1/alunos')
-    .then(response => console.log(response))
+  axios.get(process.env.APP_URL + '/api/v1/alunos')
+    .then(response => criaListaDinamica(response.data))
     .catch(error => console.log(error))
+  const criaListaDinamica = ( alunos ) => {
+    const ulAlunos = document.getElementById('alunos')
+    alunos.map(aluno => {
+      const listaAluno = document.createElement('li')
+      listaAluno.innerHTML = `Nome: ${aluno.nome}`
+      ulAlunos.appendChild(listaAluno)
+    })
+  }
 </script>
 </html>
